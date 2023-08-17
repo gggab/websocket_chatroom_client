@@ -1,15 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>WebSocket</h1>
+    <to-do-item-vue label="WebSocket" :done="true"></to-do-item-vue>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ToDoItemVue from './components/ToDoItem.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ToDoItemVue,
   }
 }
 </script>
