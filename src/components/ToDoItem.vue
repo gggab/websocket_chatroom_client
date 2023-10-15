@@ -3,10 +3,10 @@
     <button @click="connection">创建连接</button>
     <button @click="close">断开连接</button>
   </div>
-  <div class="file-buttons">
+  <!-- <div class="file-buttons">
     <input type="file" ref="fileInput" @change="onFileInputChange" />
     <button @click="sendFile">发送文件</button>
-  </div>
+  </div> -->
   <div>
     <button @click="getBlendShape">获取音频及表情数据</button>
   </div>
@@ -53,15 +53,6 @@ export default {
 
       this.ws.onopen = () => {
         console.log("onopen", this.ws.readyState);
-        //   var roomOpen = true;
-        // setInterval(() => {
-        // this.ws.send(
-        //   JSON.stringify({
-        //     useId: "lwt",
-        //     userName: "1421750225",
-        //   })
-        // );
-        // }, 2000);
       };
 
       this.ws.onmessage = (message) => {
@@ -69,14 +60,11 @@ export default {
         if (message.data !== "建立连接!") {
           const data = JSON.parse(message.data);
           const blendShape = JSON.parse(data.blendShape);
-          // const audio = data.audio;
           console.log(blendShape[0]);
           let audioBlob = this.base64ToBlob(data.audio, "wav");
-          // console.log(data.audio);
 
           this.audioSrc = URL.createObjectURL(audioBlob);
           this.$refs.audioPlayer.src = this.audioSrc;
-          // console.log(this.audioSrc)
           this.$refs.audioPlayer.play();
           let num=0;
           const oldTime = new Date().getTime();
@@ -164,7 +152,7 @@ export default {
     sendData(data) {
       if (this.ws) {
         this.ws.send(JSON.stringify(data));
-        console.log("文件已发送");
+        console.log("消息已发送");
       }
     },
   },
